@@ -1,0 +1,106 @@
+html {
+    background-color: #eee;
+    font-family: 'Roboto';
+}
+
+.container {
+    width: 650px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.header {
+    margin: 10px 0 20px 0;
+}
+
+legend {
+    margin-left: 10px;
+    font-weight: bold;
+    color: rgb(120, 118, 118);
+    padding: 0 10px;
+}
+
+label {
+    width: 150px;
+}
+
+fieldset {
+    border: solid 1px #eee;
+    padding: 15px;
+    margin-bottom: 15px
+}
+
+.checkbox {
+    width: fit-content;
+}
+
+.fieldset__inline {
+    display: flex;
+}
+
+.fieldset__column {
+    padding: 10px;
+}
+
+input, select {
+    border: solid 1px #eee;
+    border-radius: 5px;
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    width: -webkit-fill-available;
+    margin: 5px 0;
+}
+
+input:focus-visible, input:focus, input:focus-within {
+    border: solid 1px rgb(167, 167, 167);
+}
+
+.submit_button {
+    padding: 10px 25px;
+    border: none;
+    background-color: rgb(255, 56, 56);
+    color: #fff;
+    cursor: pointer;
+}
+
+.submit_button:disabled {
+    padding: 10px 25px;
+    border: none;
+    background-color: #eee;
+    color: rgb(30, 30, 30);
+}
+
+.field_error {
+    color: red;
+    font-size: 10px;
+}
+
+.form-client__column {
+    display: flex;
+}
+
+.label__t, .input__info {
+    padding: 5px 10px;
+}
+
+.label__t {
+    font-weight: 700;
+}
+
+.labels {
+    padding: 5px 10px;
+    background: #fff;
+    width: fit-content;
+}
+
+.tr-dark {
+    background: gray;
+    font-weight: 700;
+}
+
+.client-info-table {
+    border: solid 1px #222;
+}
