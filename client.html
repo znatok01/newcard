@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style/style.css">
+    <title>Document</title>
+</head>
+<body>
+
+<button id="create_pdf">В PDF</button><br><br>
+
+    <form class="form-client">   
+
+        <h3>Персональные данные</h3>
+
+        <div class="form-client__column">
+            <div class="labels">
+                <div class="label__t">Фамилия</div>
+                <div class="label__t">Имя</div>
+                <div class="label__t">Отчество</div>
+                <div class="label__t">Пол</div>
+                <div class="label__t">Гражданство</div>
+                <div class="label__t">Дата рождения</div>
+                <div class="label__t">Место рождения</div>
+            </div>
+            
+            <div class="labels">
+                <div class="input__info surname"></div>
+                <div class="input__info name"></div>
+                <div class="input__info middlename"></div>
+                <div class="input__info gender"></div>
+                <div class="input__info citizenship"></div>
+                <div class="input__info date-of-birth"></div>
+                <div class="input__info place-of-birth"></div>
+            </div>
+        </div>
+        
+        <h3>Документ, удостоверящий личность</h3>
+        
+        <div class="form-client__column">
+            <div class="labels">
+                <div class="label__t">Тип документа</div>
+                <div class="label__t">Номер документа</div>
+                <div class="label__t">Кем выдан</div>
+                <div class="label__t">Дата выдачи</div>
+                <div class="label__t">Срок действия</div>
+            </div>
+            
+            <div class="labels">
+                <div class="input__info doc-type"></div>
+                <div class="input__info doc-number"></div>
+                <div class="input__info doc-issued"></div>
+                <div class="input__info doc-date-issued"></div>
+                <div class="input__info doc-date-expired"></div>
+            </div>
+        </div>
+
+        <h3>Контакты</h3>
+
+        <div class="form-client__column">
+            <div class="labels">
+                <div class="label__t">Адрес</div>
+                <div class="label__t">Email</div>
+                <div class="label__t">Телефон</div>
+            </div>
+            
+            <div class="labels">
+                <div class="input__info address"></div>
+                <div class="input__info email"></div>
+                <div class="input__info phone"></div>
+            </div>
+        </div>
+
+    </form> 
+
+
+
+
+
+</body>
+<script src="./js/client.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script> 
+<script>  
+    (function () {  
+        var  
+         form = $('.form-client'),  
+         cache_width = form.width(),  
+         a4 = [595.28, 841.89]; // for a4 size paper width and height  
+  
+        $('#create_pdf').on('click', function () {  
+            $('body').scrollTop(0);  
+            createPDF();  
+        });  
+        //create pdf  
+        function createPDF() {  
+            getCanvas().then(function (canvas) {  
+                var  
+                 img = canvas.toDataURL("image/png"),  
+                 doc = new jsPDF({  
+                     unit: 'px',  
+                     format: 'a4'  
+                 });  
+                doc.addImage(img, 'JPEG', 20, 20);  
+                doc.save('Client.pdf');  
+                form.width(cache_width);  
+            });  
+        }  
+  
+        // create canvas object  
+        function getCanvas() {  
+            form.width((a4[0] * 1.33333) - 80).css('max-width', 'none');  
+            return html2canvas(form, {  
+                imageTimeout: 2000,  
+                removeContainer: true  
+            });  
+        }  
+  
+    }());  
+</script>  
+<script>  
+    /* 
+ * jQuery helper plugin for examples and tests 
+ */  
+    (function ($) {  
+        $.fn.html2canvas = function (options) {  
+            var date = new Date(),  
+            $message = null,  
+            timeoutTimer = false,  
+            timer = date.getTime();  
+            html2canvas.logging = options && options.logging;  
+            html2canvas.Preload(this[0], $.extend({  
+                complete: function (images) {  
+                    var queue = html2canvas.Parse(this[0], images, options),  
+                    $canvas = $(html2canvas.Renderer(queue, options)),  
+                    finishTime = new Date();  
+  
+                    $canvas.css({ position: 'absolute', left: 0, top: 0 }).appendTo(document.body);  
+                    $canvas.siblings().toggle();  
+  
+                    $(window).click(function () {  
+                        if (!$canvas.is(':visible')) {  
+                            $canvas.toggle().siblings().toggle();  
+                            throwMessage("Canvas Render visible");  
+                        } else {  
+                            $canvas.siblings().toggle();  
+                            $canvas.toggle();  
+                            throwMessage("Canvas Render hidden");  
+                        }  
+                    });  
+                    throwMessage('Screenshot created in ' + ((finishTime.getTime() - timer) / 1000) + " seconds<br />", 4000);  
+                }  
+            }, options));  
+  
+            function throwMessage(msg, duration) {  
+                window.clearTimeout(timeoutTimer);  
+                timeoutTimer = window.setTimeout(function () {  
+                    $message.fadeOut(function () {  
+                        $message.remove();  
+                    });  
+                }, duration || 2000);  
+                if ($message)  
+                    $message.remove();  
+                $message = $('<div ></div>').html(msg).css({  
+                    margin: 0,  
+                    padding: 10,  
+                    background: "#000",  
+                    opacity: 0.7,  
+                    position: "fixed",  
+                    top: 10,  
+                    right: 10,  
+                    fontFamily: 'Tahoma',  
+                    color: '#fff',  
+                    fontSize: 12,  
+                    borderRadius: 12,  
+                    width: 'auto',  
+                    height: 'auto',  
+                    textAlign: 'center',  
+                    textDecoration: 'none'  
+                }).hide().fadeIn().appendTo('body');  
+            }  
+        };  
+    })(jQuery);  
+  
+</script>
+</html>

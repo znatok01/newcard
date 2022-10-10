@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Style/style.css">
+    <link rel="stylesheet" href="./fonts/fonts.css">
+    <title>Анкета для заказа карты Ориенбанка</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">Оформление карты</h1>
+        <form action="" class="form" name="the_form" target="client.html">
+            <fieldset class="fieldset__inline">
+                <legend>Персональные данные</legend>
+                <div class="fieldset__column">
+                    <input type="text" name="last_name" id="last_name" placeholder="Фамилия">
+                    <span class="field_error"></span>
+                    <input type="text" name="first_name" id="first_name" placeholder="Имя">
+                    <span class="field_error"></span>
+                    <input type="text" name="middle_name" id="middle_name" placeholder="Отчество">
+                    <span class="field_error"></span>
+                    <input type="text" name="citizenship" id="citizenship" placeholder="Гражданство">
+                    <span class="field_error"></span>
+                </div>
+                <div class="fieldset__column">
+                    <select name="gender" id="gender"  placeholder="Пол">
+                        <option>Мужской</option>
+                        <option>Женский</option> 
+                    </select>
+                    <span class="field_error"></span>
+                    <input  type="text" placeholder="Дата рождения" onfocus="(this.type='date')" onblur="(this.type='text')" name="date_of_birth" id="date_of_birth" placeholder="Дата рождения">
+                    <span class="field_error"></span>
+                    <input type="text" name="place_of_birth" id="place_of_birth" placeholder="Место рождения">
+                    <span class="field_error"></span>
+                </div>                
+            </fieldset>
+                     
+            <fieldset class="fieldset__inline">
+                <legend>Документы</legend>
+                <div class="fieldset__column">
+                    <input type="text" name="type_of_document" id="type_of_document" placeholder="Тип документа">
+                    <input type="text" name="passport_number" id="passport_number" placeholder="Номер документа">
+                    <input type="text" name="issuing_authority" id="issuing_authority" placeholder="Кем выдан">
+                </div>
+
+                <div class="fieldset__column">
+                    <input type="date" onfocus="(this.type='date')" onblur="(this.type='text')" name="date_of_issue" id="date_of_issue" placeholder="Дата выдачи">
+                    <input type="date" onfocus="(this.type='date')" onblur="(this.type='text')" name="date_of_expired" id="date_of_expired" placeholder="Дата окончания срока">
+                </div>
+            </fieldset>
+
+            <fieldset class="fieldset__inline">
+                <legend>Контакты</legend>
+                <div class="fieldset__column">
+                    <input type="tel" name="telephone_number" id="telephone_number" placeholder="Номер телефона">
+                </div>
+                <div class="fieldset__column">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                </div>
+                <div class="fieldset__column">
+                    <input type="text" name="address" id="address" placeholder="Адрес">
+                </div>
+             </fieldset>
+
+            <fieldset class="fieldset__inline">
+                <legend>Параметры карты</legend>
+                <div class="fieldset__column">
+                    <select name="card_type" id="card_type"  placeholder="Тип карты" class="payment-system">
+                        <option>VISA Classic</option>
+                        <option>VISA Gold</option> 
+                    </select>
+                </div>
+                <div class="fieldset__column">
+                    <select name="card_ccy" id="card_ccy"  placeholder="Валюта" class="currancy">
+                        <option>RUR</option>
+                        <option>USD</option>
+                        <option>EUR</option>  
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Дополнительная информация</legend>
+                Являетесь ли вы Публичным должностным лицом или родственником Публичного должностного лица? <input type="checkbox" id="publicYes" class="checkbox"> Да <input type="checkbox" class="checkbox" id="publicNo" checked> Нет<br>
+
+                <input type="text" name="fpep_position" id="fpep_position" placeholder="Должность публичного должностного лица">
+                <input type="text" name="fpep_last_name" id="fpep_last_name" placeholder="Фамилия публичного должностного лица">
+                <input type="text" name="fpep_first_name" id="fpep_first_name" placeholder="Имя публичного должностного лица">
+                <input type="text" name="fpep_middle_name" id="fpep_middle_name" placeholder="Отчетство публичного должностного лица">
+            </fieldset>
+            <button type="submit" class="submit_button">Отправить</button>
+        </form>
+        
+    </div>
+    
+</body>
+
+<script src="./js/script.js"></script>
+</html>
