@@ -104,3 +104,14 @@ input:focus-visible, input:focus, input:focus-within {
 .client-info-table {
     border: solid 1px #222;
 }
+
+@media screen and (max-width:460px) {
+    .container {
+        max-width: calc(100% - 30px);
+    }
+
+    .fieldset__inline {
+        display: flex;
+        flex-direction: column;
+    }
+}
